@@ -20,44 +20,37 @@ fileStream::~fileStream() {
 }
 
 void fileStream::execute() {
-
-    while (file.eof()) {
-        if (currChar == '.') {
-            count++;
+    while (!file.eof() && count != 3) {
+        while (true) {
+            stream2 << currChar;
             file.get(currChar);
-            while (count == 1) {
+            if (currChar == '.' ) {
+                count++;
                 stream2 << currChar;
+                break;
             }
-            while (count == 2) {
+        }
+        file.get(currChar);
+        while (true) {
+            stream1 << currChar;
+            file.get(currChar);
+            if (currChar == '.') {
+                count++;
                 stream1 << currChar;
+                break;
             }
-            while (count == 3)
         }
+        file.get(currChar);
+        while (true) {
+            stream << currChar;
+            file.get(currChar);
+            if (currChar == '.' ) {
+                count++;
+                stream << currChar;
+                break;
+            }
+        }
+        file.get(currChar);
     }
-    cout << stream2.str() << stream1.str() << stream.str() << endl;
+    cout << stream.str() << stream1.str() << stream2.str() << endl;
 }
-
-    /** while (!this->file.eof()) {
-        if (this->currChar  == '\"') {
-            this->count++;
-            this->file.get(this->currChar);
-            for (; this->currChar != '\"' && !this->file.eof();) {
-                stream << this->currChar;
-                this->file.get(this->currChar);
-            }
-            if (this->currChar  == '\"') {
-                this->count++;
-            }
-            this->stream << '\n';
-        }
-        this->file.get(this->currChar);
-    }
-    if (!this->count) {
-        cout << "---- There are no quotes! ----" << endl;
-    } else if (!(this->count % 2)) {
-        cout << "---- Quotes found ----" << endl;
-        cout << this->stream.str();
-    } else {
-        cout << "Incorrect numbers of quote signs!" << endl;
-    }
-} */
