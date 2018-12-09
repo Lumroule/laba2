@@ -21,36 +21,40 @@ fileStream::~fileStream() {
 
 void fileStream::execute() {
     while (!file.eof() && count != 3) {
-        while (true) {
+        while (!file.eof()) {
             stream2 << currChar;
             file.get(currChar);
-            if (currChar == '.' ) {
-                count++;
+            if ((currChar == '.') || (currChar == '?') || currChar == ('!')) {
                 stream2 << currChar;
+                count++;
                 break;
             }
         }
         file.get(currChar);
-        while (true) {
+        while (!file.eof()) {
             stream1 << currChar;
             file.get(currChar);
-            if (currChar == '.') {
-                count++;
+            if ((currChar == '.') || (currChar == '?') || currChar == ('!')) {
                 stream1 << currChar;
+                count++;
                 break;
             }
         }
         file.get(currChar);
-        while (true) {
+        while (!file.eof()) {
             stream << currChar;
             file.get(currChar);
-            if (currChar == '.' ) {
-                count++;
+            if ((currChar == '.') || (currChar == '?') || currChar == ('!')) {
                 stream << currChar;
+                count++;
                 break;
             }
         }
         file.get(currChar);
     }
-    cout << stream.str() << stream1.str() << stream2.str() << endl;
+    if (count >= 3) {
+        cout << stream.str() << stream1.str() << stream2.str() << endl;
+        return;
+    }
+    cout << "Need more sentences";
 }

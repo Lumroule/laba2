@@ -14,7 +14,6 @@ private:
     string const fileName = "/Users/lumroule/Documents/Study/Programms/lab2tp/text.txt";
     ifstream file;
     // string streams
-    int kek;
     stringstream stream, stream1, stream2;
     int count;
     char currChar;
