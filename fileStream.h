@@ -13,10 +13,6 @@ private:
     // file name
     string const fileName = "/Users/lumroule/Documents/Study/Programms/lab2tp/text.txt";
     ifstream file;
-    // string streams
-    stringstream stream, stream1, stream2;
-    int count;
-    char currChar;
 public:
     fileStream();
     ~fileStream();

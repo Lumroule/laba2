@@ -7,19 +7,17 @@
 
 fileStream::fileStream() {
     file.open(fileName, ios_base::in);
-    count = 0;
-    file.get(currChar);
 }
 
 fileStream::~fileStream() {
     file.close();
-    stream.str("");
-    stream1.str("");
-    stream2.str("");
-    count = 0;
 }
 
 void fileStream::execute() {
+    char currChar;
+    file.get(currChar);
+    int  count = 0;
+    stringstream stream, stream1, stream2;
     while (!file.eof() && count != 3) {
         while (!file.eof()) {
             stream2 << currChar;
